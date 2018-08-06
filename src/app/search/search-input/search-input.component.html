@@ -1,4 +1,8 @@
 <div>
-  <input (keyup)="searchQuery.next($event.target.value)">
-  <button (click)="search()">Искать</button>
+  <input
+    #searchQuery
+    (keyup.enter)="startSearch(searchQuery.value)"
+    autofocus
+  >
+  <button (click)="startSearch(searchQuery.value)">Search</button>
 </div>

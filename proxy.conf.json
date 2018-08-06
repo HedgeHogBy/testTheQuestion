@@ -1,0 +1,7 @@
+{
+  "/api/*": {
+    "target": "https://thequestion.ru",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}

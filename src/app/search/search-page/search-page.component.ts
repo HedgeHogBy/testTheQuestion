@@ -9,10 +9,16 @@ import { SearchService } from '../search.service';
 })
 export class SearchPageComponent implements OnInit {
 
-  constructor() { }
+  results: object;
 
-  getResults() {
+  constructor(private searchService: SearchService) { }
 
+  search($event: string): void {
+    console.log($event);
+
+    this.searchService.search($event).subscribe(
+      results => this.results = results
+    );
   }
 
   ngOnInit() {

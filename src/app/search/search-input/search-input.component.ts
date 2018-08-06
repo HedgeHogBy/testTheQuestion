@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Subject } from 'rxjs';
+//import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-search-input',
@@ -7,13 +7,12 @@ import { Subject } from 'rxjs';
   styleUrls: ['./search-input.component.scss']
 })
 export class SearchInputComponent {
-  searchQuery = new Subject<object>();
+  //searchQuery = new Subject<string>();
 
-  @Output() onSearch: EventEmitter<object> = new EventEmitter<object>();
+  @Output() searchInput: EventEmitter<string> = new EventEmitter<string>();
 
-  search() {
-    console.log(this.searchQuery)
-    this.onSearch.emit(this.searchQuery);
+  startSearch(query: string) {
+    this.searchInput.emit(query);
   }
 
 }
