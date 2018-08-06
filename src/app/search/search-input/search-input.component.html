@@ -1,3 +1,4 @@
-<p>
-  search-input works!
-</p>
+<div>
+  <input (keyup)="searchQuery.next($event.target.value)">
+  <button (click)="search()">Искать</button>
+</div>

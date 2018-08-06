@@ -1,2 +1,7 @@
-<app-search-input></app-search-input>
-<app-search-results></app-search-results>
+<div class="search-page ">
+  <app-search-input
+    (onSearch)="getResults($event)"
+  >
+  </app-search-input>
+  <app-search-results></app-search-results>
+</div>
