@@ -1,3 +1,7 @@
-<p>
-  search-results works!
-</p>
+<div *ngIf="searchResults">
+  <app-result-card
+    *ngFor="let question of searchResults.items"
+    [question]="question"
+  >
+  </app-result-card>
+</div>

@@ -1,7 +1,11 @@
 {
-  "/api/*": {
+  "/api": {
     "target": "https://thequestion.ru",
     "secure": false,
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "changeOrigin": true,
     "logLevel": "debug"
   }
 }

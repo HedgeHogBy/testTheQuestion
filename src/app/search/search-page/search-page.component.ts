@@ -17,7 +17,10 @@ export class SearchPageComponent implements OnInit {
     console.log($event);
 
     this.searchService.search($event).subscribe(
-      results => this.results = results
+      (results) => {
+        console.log(results);
+        this.results = results;
+      }
     );
   }
 

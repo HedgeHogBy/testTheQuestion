@@ -3,5 +3,8 @@
     (searchInput)="search($event)"
   >
   </app-search-input>
-  <app-search-results></app-search-results>
+  <app-search-results
+    [searchResults] = "results"
+  >
+  </app-search-results>
 </div>
