@@ -1,7 +1,8 @@
-<div *ngIf="searchResults">
-  <app-result-card
-    *ngFor="let question of searchResults.items"
-    [question]="question"
-  >
-  </app-result-card>
+<div *ngIf="searchResults" class="row">
+    <app-result-card
+      class="col-sm"
+      *ngFor="let question of searchResults.items"
+      [question]="question"
+    >
+    </app-result-card>
 </div>
