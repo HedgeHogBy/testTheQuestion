@@ -1,5 +1,18 @@
-<div class="card">
-  <img class="card-img-top" src="{{ question.cover.thumbnailUrl }}" alt="{{ question.slug }}">
+<div
+  *ngIf="question"
+  class="card mb-2"
+>
+  <img
+    *ngIf="question.cover"
+    class="card-img-top"
+    src="{{ question.cover.thumbnailUrl }}"
+    alt="{{ question.slug }}"
+  >
+  <img
+    *ngIf="!question.cover"
+    class="card-img-top"
+    src="http://via.placeholder.com/250px250/?text=Missing image"
+  >
   <div class="card-body">
     <h5 class="card-title">{{ question.title }}</h5>
   </div>

@@ -1,20 +1,13 @@
-<div class="row">
+<div class="row mb-3">
   <div class="col-md">
     <div class="input-group">
       <input
         class="form-control"
         #searchQuery
-        (keyup.enter)="startSearch(searchQuery.value)"
+        (keyup)="setQuery(searchQuery.value)"
         autofocus
+        placeholder="Enter search request here"
       >
-      <div class="input-group-append">
-        <button
-          class="btn btn-primary"
-          (click)="startSearch(searchQuery.value)"
-        >
-          Search
-        </button>
-      </div>
     </div>
   </div>
 </div>

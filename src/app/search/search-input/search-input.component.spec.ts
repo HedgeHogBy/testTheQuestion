@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule} from '@angular/common/http/testing';
 
 import { SearchInputComponent } from './search-input.component';
 
@@ -8,7 +9,8 @@ describe('SearchInputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchInputComponent ]
+      declarations: [ SearchInputComponent ],
+      imports: [HttpClientTestingModule]
     })
     .compileComponents();
   }));

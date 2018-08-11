@@ -1,10 +1,10 @@
 <div class="search-page container">
-  <app-search-input
-    (searchInput)="search($event)"
+  <app-the-question-search-input
+    (searchInput)="setResults($event)"
   >
-  </app-search-input>
-  <app-search-results
+  </app-the-question-search-input>
+  <app-the-question-search-results
     [searchResults] = "results"
   >
-  </app-search-results>
+  </app-the-question-search-results>
 </div>

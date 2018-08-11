@@ -1,18 +1,28 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-//import { Subject } from 'rxjs';
+import { Component, EventEmitter, Output} from '@angular/core';
+import { Subject } from 'rxjs';
+
+import { SearchService } from '../search.service';
 
 @Component({
-  selector: 'app-search-input',
+  selector: 'app-the-question-search-input',
   templateUrl: './search-input.component.html',
   styleUrls: ['./search-input.component.scss']
 })
 export class SearchInputComponent {
-  //searchQuery = new Subject<string>();
+  searchQuery$ = new Subject<string>();
 
-  @Output() searchInput: EventEmitter<string> = new EventEmitter<string>();
+  @Output() searchInput: EventEmitter<object> = new EventEmitter<object>();
 
-  startSearch(query: string) {
-    this.searchInput.emit(query);
+  constructor(private searchService: SearchService) {
+    this.searchService.search(this.searchQuery$).subscribe(
+      (results) => {
+        console.log(results);
+        this.searchInput.emit(results);
+      }
+    );
   }
 
+  setQuery(query: string) {
+    this.searchQuery$.next(query);
+  }
 }

@@ -1,30 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-
-import { SearchService } from '../search.service';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-search-page',
   templateUrl: './search-page.component.html',
   styleUrls: ['./search-page.component.scss']
 })
-export class SearchPageComponent implements OnInit {
+export class SearchPageComponent {
 
-  results: object;
+  results: Array<object>;
 
-  constructor(private searchService: SearchService) { }
-
-  search($event: string): void {
-    console.log($event);
-
-    this.searchService.search($event).subscribe(
-      (results) => {
-        console.log(results);
-        this.results = results;
-      }
-    );
-  }
-
-  ngOnInit() {
+  setResults($event: Array<object>): void {
+    this.results = $event;
   }
 
 }
