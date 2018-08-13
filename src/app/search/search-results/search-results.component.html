@@ -6,3 +6,6 @@
     >
     </app-result-card>
 </div>
+<div *ngIf="searchResults && searchResults.total === 0" class="row">
+  <h3 i18n="@@emptySearchResultMessage">Nothing found</h3>
+</div>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of} from 'rxjs';
-import { catchError, map, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
+import { retry, catchError, map, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
 //import { SearchModule } from './search.module';
 
 const MINIMAL_QUERY_LENGTH = 3;
@@ -30,6 +30,7 @@ export class SearchService {
     return this.http.get(`${SEARCH_API_URL}${query}`)
       .pipe(
         //map(response => response['questions']),
+        retry(1),
         catchError(this.handleError('search', {items: [], total: 0}))
       );
   }

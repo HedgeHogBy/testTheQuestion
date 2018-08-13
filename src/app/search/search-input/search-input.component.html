@@ -1,4 +1,4 @@
-<div class="row mb-3">
+<div class="row mb-3 sticky-top">
   <div class="col-md">
     <div class="input-group">
       <input
@@ -6,6 +6,7 @@
         #searchQuery
         (keyup)="setQuery(searchQuery.value)"
         autofocus
+        i18n-placeholder="@@searchInputFieldHint"
         placeholder="Enter search request here"
       >
     </div>
