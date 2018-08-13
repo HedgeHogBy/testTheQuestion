@@ -3,6 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
+  { path: '',
+    redirectTo: 'search',
+    pathMatch: 'full'
+  }
   //{ path: '**', component: PageNotFoundComponent }
 ];
 

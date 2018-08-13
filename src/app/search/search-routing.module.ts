@@ -5,10 +5,6 @@ import { SearchPageComponent } from './search-page/search-page.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: SearchPageComponent
-  },
-  {
     path: 'search',
     component: SearchPageComponent
   }

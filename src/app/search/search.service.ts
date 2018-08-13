@@ -30,7 +30,7 @@ export class SearchService {
     return this.http.get(`${SEARCH_API_URL}${query}`)
       .pipe(
         //map(response => response['questions']),
-        catchError(this.handleError('search', []))
+        catchError(this.handleError('search', {items: [], total: 0}))
       );
   }
 

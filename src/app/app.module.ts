@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchModule } from './search/search.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { SearchModule } from './search/search.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    SearchModule
+    SearchModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
