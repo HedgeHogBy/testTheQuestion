@@ -1,33 +1,42 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of} from 'rxjs';
 import { retry, catchError, map, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
+import { APP_CONFIG, AppConfig } from '../app-config.module';
 //import { SearchModule } from './search.module';
-
-const MINIMAL_QUERY_LENGTH = 3;
-const SEARCH_API_URL = '/api/search/complex?sort=popularity&tab=questions&q=';
 
 @Injectable({
   providedIn: 'root'//SearchModule
 })
 export class SearchService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    @Inject(APP_CONFIG) private config: AppConfig
+  ) { }
 
   search(query$: Observable<string>): Observable<object> {
 
     return query$.pipe(
       debounceTime(400),
       distinctUntilChanged(),
-      filter((query: string) => query.length >= MINIMAL_QUERY_LENGTH),
+      filter((query: string) => query.length >= this.config.minimalQueryLength),
       switchMap((query: string): Observable<object> => {
         return this.getQuestions(query);
       })
     );
   }
 
-  private getQuestions(query: string): Observable<object> {
-    return this.http.get(`${SEARCH_API_URL}${query}`)
+  private getQuestions(query: string, params: object = this.config.searchParams): Observable<object> {
+
+    return this.http.get(
+      `${this.config.searchApiUrl}`,
+      {
+        params: {
+          ...params,
+          'q': query
+        }
+      })
       .pipe(
         //map(response => response['questions']),
         retry(1),
