@@ -1,10 +1,10 @@
 <div *ngIf="searchResults" class="row">
-    <app-result-card
-      class="col-sm"
-      *ngFor="let question of searchResults.items"
-      [question]="question"
-    >
-    </app-result-card>
+  <app-result-card
+    class="col-sm"
+    *ngFor="let question of searchResults.items"
+    [question]="question"
+  >
+  </app-result-card>
 </div>
 <div *ngIf="searchResults && searchResults.total === 0" class="row">
   <h3 i18n="@@emptySearchResultMessage">Nothing found</h3>

@@ -3,8 +3,32 @@
     (searchInput)="setResults($event)"
   >
   </app-the-question-search-input>
+
+  <h5
+    i18n="@@totalResultsNumber"
+    *ngIf="results && results.total"
+  >
+    Total results: {{ results.total }}
+  </h5>
+
   <app-the-question-search-results
     [searchResults] = "results"
   >
   </app-the-question-search-results>
+
+  <ngb-pagination
+    *ngIf="results && results.total > resultsPerPage"
+    class="d-flex justify-content-center"
+    size="lg"
+    [collectionSize]="results.total"
+    [(page)]="page"
+    [maxSize]="3"
+    [pageSize]="resultsPerPage"
+    [rotate]="true"
+    [ellipses]="false"
+    [boundaryLinks]="true"
+    [directionLinks]="false"
+    (pageChange)="changePageResults($event)"
+  >
+  </ngb-pagination>
 </div>

@@ -16,7 +16,6 @@ export class SearchInputComponent {
   constructor(private searchService: SearchService) {
     this.searchService.search(this.searchQuery$).subscribe(
       (results) => {
-        console.log(results);
         this.searchInput.emit(results);
       }
     );

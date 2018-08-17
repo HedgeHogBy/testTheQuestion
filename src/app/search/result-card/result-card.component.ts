@@ -1,12 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
-interface Question {
-  title: string;
-  cover?: {
-    thumbnailUrl: string
-  };
-  slug: string;
-}
+import { Question } from '../question';
 
 @Component({
   selector: 'app-result-card',

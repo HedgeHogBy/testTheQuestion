@@ -3,12 +3,18 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of} from 'rxjs';
 import { retry, catchError, map, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
 import { APP_CONFIG, AppConfig } from '../app-config.module';
-//import { SearchModule } from './search.module';
+
+const EMPTY_RESULT = {
+  items: [],
+  total: 0
+};
 
 @Injectable({
-  providedIn: 'root'//SearchModule
+  providedIn: 'root'
 })
 export class SearchService {
+
+  private lastSearchQuery = '';
 
   constructor(
     private http: HttpClient,
@@ -22,8 +28,20 @@ export class SearchService {
       distinctUntilChanged(),
       filter((query: string) => query.length >= this.config.minimalQueryLength),
       switchMap((query: string): Observable<object> => {
+        this.lastSearchQuery = query;
+
         return this.getQuestions(query);
       })
+    );
+  }
+
+  searchWithOffset(offset: number): Observable<object> {
+    return this.getQuestions(
+      this.lastSearchQuery,
+      {
+        ...this.config.searchParams,
+        offset
+      }
     );
   }
 
@@ -40,12 +58,16 @@ export class SearchService {
       .pipe(
         //map(response => response['questions']),
         retry(1),
-        catchError(this.handleError('search', {items: [], total: 0}))
+        catchError(this.handleError('search', EMPTY_RESULT))
       );
   }
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
+      // in production should be handled with some specific notification service
+      alert(`${operation} failed: ${error.message}`);
+
+      // in production could be logged to some remote server like https://sentry.io/
       console.log(`${operation} failed: ${error.message}`);
 
       return of(result as T);
