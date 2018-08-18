@@ -1,5 +1,7 @@
 # TestTheQuestion
 
+Configured with Angular CLI, for specific webpack configuration we can use `ng eject` command and cofigure webpack manually.
+
 ## Installation and Run
 
 ```
